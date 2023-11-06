@@ -24,11 +24,11 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '/api') // 重写请求 URL 的路径
       }
     },
-    resolve: {
-      // 配置路径别名
-      alias: {
-        '@': path.resolve(__dirname, './src')
-      }
+  },
+  resolve: {
+    // 配置路径别名
+    alias: {
+      '@': path.resolve(__dirname, './src')
     }
   }
 })

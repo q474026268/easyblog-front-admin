@@ -2,9 +2,13 @@ import { createRouter,createWebHistory } from "vue-router";
 
 const routes = [
   {
-    name: "首页",
-    path: "/index",
-    component: () => import("../views/index.vue")
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    name: "登录",
+    path: "/login",
+    component: () => import("../views/login.vue")
   }
 ]
 
