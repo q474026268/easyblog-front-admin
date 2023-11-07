@@ -1,0 +1,23 @@
+{
+  "id": "4318856",
+  "name": "博客",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1058101",
+      "name": "Password",
+      "font_class": "password",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "2019913",
+      "name": "account",
+      "font_class": "account",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}

@@ -16,6 +16,9 @@ import ElementPlus from 'element-plus'
 // 引入ElementPlus的CSS样式文件
 import "element-plus/dist/index.css"
 
+// 引入iconfont
+import "@/assets/icon/iconfont.css"
+
 // 使用createApp创建一个新的Vue应用实例，并传递根组件App
 const app = createApp(App)
 
