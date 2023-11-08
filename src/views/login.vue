@@ -20,7 +20,7 @@
         <el-form-item prop="checkCode">
           <div class="check-code-panel">
             <el-input placeholder="请输入验证码" v-model="formData.checkCode" class="input-panel" size="large" />
-            <img :src="checkCoudeUrl" class="check-code" @click="onCheckCodeChange">
+            <img :src="checkCodeUrl" class="check-code" @click="onCheckCodeChange">
           </div>
         </el-form-item>
         <el-form-item label="">
@@ -75,7 +75,7 @@ const getTimestampedUrl = (basePath) => {
 }
 
 // 初始值为带有时间戳的URL
-const checkCoudeUrl = ref(getTimestampedUrl(api.checkCode));
+const checkCodeUrl = ref(getTimestampedUrl(api.checkCode));
 
 // 当需要更改验证码URL时调用此函数
 const onCheckCodeChange = () => {
