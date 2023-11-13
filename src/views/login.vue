@@ -10,8 +10,8 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item prop="passWord">
-          <el-input placeholder="请输入密码" v-model="formData.passWord" size="large">
+        <el-form-item prop="password">
+          <el-input placeholder="请输入密码" v-model="formData.password" size="large" type="password">
             <template #prefix>
               <span class="icon-password"></span>
             </template>
@@ -36,6 +36,8 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import md5 from "js-md5"
+import { loginAPI } from "@/services/modules/login"
 
 // 定义API端点对象
 const api = {
@@ -47,9 +49,9 @@ const formDataRef = ref()
 
 const formData = reactive({
   // 账号 
-  account: '',
+  account: '18666666666',
   // 密码
-  passWord: '',
+  password: 'admin123',
   // 验证码
   checkCode: '',
   // 记住我
@@ -61,7 +63,7 @@ const rules = {
   account: [
     { required: true, message: '请输入用户名', trigger: 'blur' }
   ],
-  passWord: [
+  password: [
     { required: true, message: '请输入密码', trigger: 'blur' }
   ],
   checkCode: [
@@ -87,10 +89,11 @@ const onCheckCodeChange = () => {
 // 登录函数，用于处理登录表单提交
 const login = () => {
   // 验证表单数据
-  formDataRef.value.validate((valid) => {
+  formDataRef.value.validate(async (valid) => {
     if (valid) {
-      // 如果表单数据验证通过，则打印表单数据
-      console.log(formDataRef.value.model);
+      const params = {...formData};
+      params.password = md5(params.password)
+      const data = await loginAPI(params);
     } else {
       // 如果验证未通过，可以在这里处理，如弹出提示等
       console.error('Validation failed.');
