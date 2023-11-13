@@ -72,7 +72,7 @@ service.interceptors.response.use(
   async response => {
     // 响应成功后停止加载
     stopLoading();
-    const { status, info, data, code } = response.data;
+    const { status, info, code, data } = response.data;
     // 根据响应的不同状态进行处理
     if (status === 'error') {
       showError(info);
