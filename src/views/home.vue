@@ -9,12 +9,15 @@
           </div>
           <div class="menu-panel">
             <ul>
-              <li v-for="menu in menuList" :key="menu.title">
-                <span :class="menu.icon"></span>
-                <span>{{ menu.title }}</span>
-                <ul>
-                  <li v-for="subMenu in menu.children" :key="subMenu.titie">
-                    <span>{{ subMenu.titie }}</span>
+              <li v-for="(menu, index) in  menuList " :key="menu.title">
+                <span class="menu-title-p" @click="openClose(index)">
+                  <span :class="['iconfont', menu.icon]"></span>
+                  <span class="menu-title">{{ menu.title }}</span>
+                  <span :class="['iconfont', 'open-close', menu.open ? 'icon-open' : 'icon-close']"></span>
+                </span>
+                <ul class="sub-menu" v-show="menu.open">
+                  <li v-for="subMenu in menu.children " :key="subMenu.titie">
+                    <span class="sub-menu-item">{{ subMenu.titie }}</span>
                   </li>
                 </ul>
               </li>
@@ -28,7 +31,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, toRefs, ref } from "vue";
+import { reactive } from "vue";
+
+// 菜单列表
 const menuList = reactive([
   {
     title: "博客",
@@ -40,7 +45,7 @@ const menuList = reactive([
         path: "/blog/list"
       },
       {
-        title: "分类管理",
+        titie: "分类管理",
         path: "/blog/category"
       }
     ]
@@ -88,6 +93,10 @@ const menuList = reactive([
     ]
   }
 ])
+// 点击对应菜单 展开|收缩
+const openClose = (index) => {
+  menuList[index].open = !menuList[index].open;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -103,7 +112,7 @@ const menuList = reactive([
 
     .left-aside {
       padding: 0 15px;
-      width: 250px;
+      width: 300px;
 
       .post-btn {
         background: green;
@@ -113,11 +122,57 @@ const menuList = reactive([
       }
 
       .menu-panel {
+        margin-top: 5px;
+
         ul,
         li {
           padding: 0;
           margin: 0;
           list-style: none;
+        }
+
+        .menu-title-p {
+          display: flex;
+          cursor: pointer;
+          line-height: 40px;
+          padding: 0px 5px;
+
+          &:hover {
+            background: #ddd;
+          }
+
+          .iconfont {
+            color: #91949a;
+            font-size: 16px;
+          }
+
+          .menu-title {
+            flex: 1;
+            color: #3f4042;
+            margin-left: 15px;
+          }
+
+          .open-close {
+            width: 20px;
+            font-size: 18px;
+          }
+        }
+
+        .sub-menu {
+          margin-left: 25px;
+          font-size: 14px;
+          .sub-menu-item {
+            display: block;
+            padding: 0 10px 0 33px;
+            line-height: 40px;
+            cursor: pointer;
+
+            
+            &:hover {
+              
+              background: #ddd;
+            }
+          }
         }
       }
     }
